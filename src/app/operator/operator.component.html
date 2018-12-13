@@ -1,0 +1,55 @@
+
+
+<br>
+<div class="row">
+  <div class="col">
+
+      <div class="card">
+          <div class="card-body">
+              <div class="form-inline">
+
+                  <div class="form-group mx-sm-3 mb-2">
+                    <label for="ph" class="sr-only">Enter your phone number</label>
+                    <input type="text" [(ngModel)]="phnumber" class="form-control"  placeholder="Enter your phone number">
+                  </div>
+                  <button id="findOperator" (click)="findOperator()" class="btn btn-primary mb-2">Find Operator</button>
+                </div>
+          </div>
+        </div>
+
+
+  </div>
+  <div class="col">
+      <div *ngIf="isFound && result" class="alert alert-success" role="alert">
+          <strong>{{result.operator}}</strong> with price of  <strong>${{result.value}}</strong> per min.
+        </div>
+        <div *ngIf="!isFound"class="alert alert-danger" role="alert">
+          No operators found.!
+        </div>
+</div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-sm-6" *ngFor="let op of operotorList | keyvalue">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{op.key}}</h5>
+          <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Code</th>
+                  <th scope="col">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let vl of op.value"><td>{{vl[0]}}</td><td>{{vl[1]}}</td></tr>
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+
